@@ -41,6 +41,7 @@ function calculateDollars(){
     
     // Check if user inputted a number    
     if (!(!isNaN(dollars) && !isNaN(parseFloat(dollars)))){
+        // document.getElementById("result").innerHTML = "Error: Input must be a number.";
         alert("Error: Input must be a number.");
         return 1;
     }
@@ -55,6 +56,7 @@ function calculateDollars(){
     // If current day is after last day of school, send message that school is over for the current school year
     else if (currentDay > dateRangesInt[dateRangesInt.length - 1][1]){
         alert("Error: Current day is after the end of the school year.");
+        // document.getElementById("result").innerHTML = "Error: Current day is after the end of the school year.";
         return 1;
     }
 
@@ -77,6 +79,7 @@ function calculateDollars(){
 
     // Finds number of school days left, including the current day
     var schoolDaysLeft = schoolDaysList.length - (currentDayIndex);
-    alert("$" + Math.round((dollars / schoolDaysLeft) * 1e2)/1e2); // Rounds to 2 decimal places
+    var result = "$" + (Math.round((dollars / schoolDaysLeft) * 1e2)/1e2).toFixed(2); //toFixed(2) adds extra 0s if the number has less than 2 decimal places
+    document.getElementById("result").innerHTML = result;
     return 0;
 }

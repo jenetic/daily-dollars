@@ -1,0 +1,22 @@
+#result {
+    font-size: 100px;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center; */
+}
