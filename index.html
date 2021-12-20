@@ -14,7 +14,6 @@
     </head>
     <body>
         <div class="center">
-            <div id="result"><br></div>
             <p>
                 Enter in amount of dining dollars.
                 <br>
@@ -25,6 +24,15 @@
             <br>
             <input type="submit" value="Submit" onclick="calculateDollars()"/>
             <br>
+            
+            <div class="results">
+                <h1>Results</h1>
+                <p>Today is <span id="today"></span></p>
+                <p>There are <span id="school-days-left"></span> days (not counting winter or spring break) left until the end of school, which is <span id="last-day"></span>.</p>
+                <p>If you have $<span id="og-dollars"></span> left, you can spend <span id="result-dollars"></span> each day to have enough for the rest of the school year.</p>
+                
+                <div id="dollars-per-day"><br></div>
+            </div> 
         </div>
     
         <script type="text/javascript" src="script.js"></script>

@@ -1,5 +1,5 @@
-#result {
-    font-size: 100px;
+.results {
+    display: none;
 }
 
 .center {
@@ -10,13 +10,4 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
-    
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-
-    margin-top: auto;
-    margin-bottom: auto;
-    text-align: center; */
 }
