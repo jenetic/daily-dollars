@@ -1,11 +1,4 @@
-const dateRanges = [
-    // 2021
-    [new Date(2021, 8, 21), new Date(2021, 11, 11)],
-    [new Date(2022, 0, 3), new Date(2022, 2, 19)], // Winter break
-    [new Date(2022, 2, 28), new Date(2022, 5, 10)] // Spring break
-];
-var firstDay = dateRanges[0][0];
-var lastDay = dateRanges[dateRanges.length - 1][1];
+// Note: Program counts the current day as one day.
 
 // Converts day into int value, with 1 as the first date in dateRanages array
 function daysFromSchoolStart(date, firstDay) {
@@ -32,11 +25,6 @@ function schoolDaysListFromRangesInt(dateRangesInt, schoolDaysList) {
     }
 }
 
-const dateRangesInt = [];
-daysFromSchoolStartList(dateRanges, dateRangesInt);
-const schoolDaysList = [];
-schoolDaysListFromRangesInt(dateRangesInt, schoolDaysList);
-
 // Format date into mm/dd/yyyy format (for display)
 function dateFormat(date) {
     return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
@@ -44,17 +32,57 @@ function dateFormat(date) {
 
 // Calculate dollars left based on how many days of school are left
 function calculateDollars() {
-    var dollars = document.getElementById("dollars").value;
-    // Round user input to 2 decimal places
-    dollars = (Math.round((dollars) * 1e2)/1e2).toFixed(2);
     
-    // Check if user inputted a number    
-    if (!(!isNaN(dollars) && !isNaN(parseFloat(dollars)))) {
-        // document.getElementById("result").innerHTML = "Error: Input must be a number.";
-        alert("Error: Input must be a number.");
+    // Store user input as variable "dollars"
+    var dollars = document.getElementById("dollars").value;
+    
+    // Check if user inputted a negative number or something that isn't a number    
+    if (dollars == "" || dollars < 0 || !(!isNaN(dollars) && !isNaN(parseFloat(dollars)))) {
+        alert("Error: Input must be a positive number.");
         return 1;
     }
     
+    // Date Ranges of school year
+    const dateRanges = [
+        // 2021
+        [new Date(2021, 8, 21), new Date(2021, 11, 11)], // Winter break
+        [new Date(2022, 0, 3), new Date(2022, 2, 19)], // Spring break
+        [new Date(2022, 2, 28), new Date(2022, 5, 10)] 
+    ];
+    var firstDay = dateRanges[0][0];
+    var lastDay = dateRanges[dateRanges.length - 1][1];
+    
+    // CHECK IF BREAKS ARE INCLUDED
+    var includeWinterBreak = document.getElementById("includeWinterBreak").checked;
+    var includeSpringBreak = document.getElementById("includeSpringBreak").checked;
+    
+    // If both include winter and spring break are checked, edit dateRanges array to remove breaks
+    if (includeWinterBreak && includeSpringBreak) {
+        dateRanges[0][1] = dateRanges[2][1];
+        dateRanges.splice(1, 2);
+    }
+    // If just include winter break is checked, edit dateRanges array to remove winter break
+    else if (includeWinterBreak) {
+        dateRanges[0][1] = dateRanges[1][1];
+        dateRanges.splice(1, 1);
+    }
+    // If just include spring break is checked, edit dateRanges array to remove spring break
+    else if (includeSpringBreak) {
+        dateRanges[1][1] = dateRanges[2][1];
+        dateRanges.splice(2, 1);
+    }
+
+    //  TO DO: If ignore weekends is checked
+    // if (document.getElementById("ignoreWeekends").checked) {
+    //     alert("unfinished");
+    // }
+
+    // Make school days list from date ranges
+    const dateRangesInt = [];
+    const schoolDaysList = [];
+    daysFromSchoolStartList(dateRanges, dateRangesInt);
+    schoolDaysListFromRangesInt(dateRangesInt, schoolDaysList);
+
     var today = new Date();
     var currentDay = daysFromSchoolStart(today, firstDay); // "currentDay" is int version of "today"
 
@@ -66,7 +94,6 @@ function calculateDollars() {
     // If current day is after last day of school, send message that school is over for the current school year
     else if (currentDay > dateRangesInt[dateRangesInt.length - 1][1]) {
         alert("Error: Current day is after the end of the school year.");
-        // document.getElementById("result").innerHTML = "Error: Current day is after the end of the school year.";
         return 1;
     }
 
@@ -75,8 +102,7 @@ function calculateDollars() {
 
     // If current day is during a break, sets current day to the first day of when school resumes
     if (currentDayIndex === -1) {
-        // Find which break the current day is in
-        // Iterate through list of date ranges
+        // Find which break the current day is in and iterate through list of date ranges
         for (let i = 0; i < (dateRangesInt.length - 1); i++) {
             // if current day is between end day of a range and start day of next range (aka. during a break)
             if (currentDay > dateRangesInt[i][1] && currentDay < dateRangesInt[i+1][0]) {
@@ -86,6 +112,9 @@ function calculateDollars() {
             }
         }
     }
+
+    // Round user input to 2 decimal places
+    dollars = (Math.round((dollars) * 1e2)/1e2).toFixed(2);
 
     // Finds number of school days left, including the current day
     var schoolDaysLeft = schoolDaysList.length - (currentDayIndex);
@@ -109,3 +138,11 @@ function calculateDollars() {
 
     return 0;
 }
+  
+// Prevents page from refreshing when user clicks submit
+var form = document.getElementById("form");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+
+// Runs calculateDollars() when submit button is clicked
+document.getElementById("submit").addEventListener("click", calculateDollars);

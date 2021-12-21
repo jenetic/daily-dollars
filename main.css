@@ -2,12 +2,33 @@
     display: none;
 }
 
-.center {
-    margin: 0;
+.bottom-center {
+    /* margin: auto; */
     position: absolute;
-    top: 45%;
+    bottom: 0;
     left: 50%;
-    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+}
+
+/* PADDING */
+.content {
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 40px;
+    padding-bottom: 50px;
+}
+
+@media (max-width: 1043px) {
+    .content {
+        padding-left: 65px;
+        padding-right: 65px;
+    }
+}
+
+@media (max-width: 574px) {
+    .content {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
 }

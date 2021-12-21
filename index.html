@@ -13,28 +13,61 @@
         <title>Dining Dollars</title>
     </head>
     <body>
-        <div class="center">
-            <p>
-                Enter in amount of dining dollars.
-                <br>
-                (Doesn't count winter or spring break)
-            </p>
-            $ <input type="text" id="dollars"/> 
-            <br>
-            <br>
-            <input type="submit" value="Submit" onclick="calculateDollars()"/>
-            <br>
-            
-            <div class="results">
+        <div class="row content">
+            <div class="col-sm-4">
+                <h1>Dining Dollars</h1>
+                <p>
+                    Enter in amount of dining dollars.
+                </p>
+                <form id="form">
+                    <p>
+                        <input type="checkbox" id="includeWinterBreak"> <label for="includeWinterBreak">Include winter break </label>
+                        <br>
+                        <input type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak">Include spring break</label>
+                        <br>
+                        <input type="checkbox" id="ignoreWeekends"> <label for="ignoreWeekends">Ignore weekends</label>
+                    </p>
+                    <p>$ <input type="text" style="width: 100px;" id="dollars" autocomplete="off"/></p>
+                    <p><input type="submit" value="Submit" id="submit"/></p> 
+                </form>
+                <p id="test2"></p>
+            </div>
+
+            <div class="col-sm-8">
                 <h1>Results</h1>
-                <p>Today is <span id="today"></span></p>
-                <p>There are <span id="school-days-left"></span> days (not counting winter or spring break) left until the end of school, which is <span id="last-day"></span>.</p>
-                <p>If you have $<span id="og-dollars"></span> left, you can spend <span id="result-dollars"></span> each day to have enough for the rest of the school year.</p>
-                
-                <div id="dollars-per-day"><br></div>
-            </div> 
+                <div class="results">
+                    <p>Today is <span id="today"></span></p>
+                    <p>There are <span id="school-days-left"></span> day(s) left until the end of school, which is on <span id="last-day"></span>.</p>
+                    <p>If you have $<span id="og-dollars"></span> left, you can spend <span id="result-dollars"></span> each day to have enough for the rest of the school year.</p>
+                </div>    
+            </div>
         </div>
-    
-        <script type="text/javascript" src="script.js"></script>
+        
+        <div class="bottom-center">
+            <p>
+                Last updated [insert date]. Contact 
+                <!-- Begin Email Cloaking -->
+                <script language='javascript' type='text/javascript'">
+                    //
+                    // Anti-Spam Email Cloaking 3.0 by David Tulga
+                    // http://www.davidtulga.com/antispamemail.htm
+                    //
+                    x = '&#64;';
+                    eml = '&#106;&#57;&#108;&#97;&#109;' + x + '&#117;&#99;&#115;&#100;&#46;&#101;&#100;&#117;';
+                    msg = '&#106;&#57;&#108;&#97;&#109;' + x + '&#117;&#99;&#115;&#100;&#46;&#101;&#100;&#117;';
+                    out = '<a class="cloak_eml" style= "text-decoration: none" href="mailto:' + eml + '">' + msg + '</a>';
+                    document.write(out);
+                    // -->
+                </script>
+                <noscript>
+                    <!-- This message is displayed if the browser has javascript disabled. -->
+                    &#106;&#57;&#108;&#97;&#109; (at) &#117;&#99;&#115;&#100;&#46;&#101;&#100;&#117; [ &#106;&#57;&#108;&#97;&#109; (at) &#117;&#99;&#115;&#100;&#46;&#101;&#100;&#117; ] 
+                </noscript>
+                <!-- End Email Cloaking -->
+                for bugs or questions!
+            </p>
+        </div>
+        
+    <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
