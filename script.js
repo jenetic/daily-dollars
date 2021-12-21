@@ -1,7 +1,7 @@
 // Note: Program counts the current day as one day.
 
-// Converts day into int value, with 1 as the first date in dateRanages array
-function daysFromSchoolStart(date, firstDay) {
+// Converts day into int value, with  as the first date in dateRanges array
+function daysFromSchoolStart(firstDay, date) {
     return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate())) / 24 / 60 / 60 / 1000; 
 }
 
@@ -9,8 +9,8 @@ function daysFromSchoolStart(date, firstDay) {
 function daysFromSchoolStartList(dateRanges, dateRangesInt) {
     for (let i = 0; i < dateRanges.length; i++) {
         const row = [];
-        row.push(daysFromSchoolStart(dateRanges[i][0], dateRanges[0][0])); // Start of range
-        row.push(daysFromSchoolStart(dateRanges[i][1], dateRanges[0][0])); // End of range
+        row.push(daysFromSchoolStart(dateRanges[0][0], dateRanges[i][0])); // Start of range
+        row.push(daysFromSchoolStart(dateRanges[0][0],dateRanges[i][1])); // End of range
         dateRangesInt.push(row);
     }
 }
@@ -72,11 +72,6 @@ function calculateDollars() {
         dateRanges.splice(2, 1);
     }
 
-    //  TO DO: If ignore weekends is checked
-    // if (document.getElementById("ignoreWeekends").checked) {
-    //     alert("unfinished");
-    // }
-
     // Make school days list from date ranges
     const dateRangesInt = [];
     const schoolDaysList = [];
@@ -84,32 +79,66 @@ function calculateDollars() {
     schoolDaysListFromRangesInt(dateRangesInt, schoolDaysList);
 
     var today = new Date();
-    var currentDay = daysFromSchoolStart(today, firstDay); // "currentDay" is int version of "today"
+    var todayUpdated = new Date();
+    var todayInt = daysFromSchoolStart(firstDay, today); // "todayInt" is int version of "today"
 
-    // If current day is before first day of school, set currentDay to 1st day of school
-    if (currentDay < 0) {
-        currentDay = 0;
+    // RECONFIGURE CURRENT DAY
+    // If current day is before first day of school, set todayInt to 1st day of school
+    if (todayInt < 0) {
+        todayInt = 0;
+        todayUpdated = dateRanges[0][0]; // Date that corresponds with "todayInt". For calculating weekends
     }
 
     // If current day is after last day of school, send message that school is over for the current school year
-    else if (currentDay > dateRangesInt[dateRangesInt.length - 1][1]) {
+    else if (todayInt > dateRangesInt[dateRangesInt.length - 1][1]) {
         alert("Error: Current day is after the end of the school year.");
         return 1;
     }
 
     // Because the days before 1st and after last day of school are taken care of, any day that isn't in the list has to be on a break
-    var currentDayIndex = schoolDaysList.indexOf(currentDay);
+    var todayIndex = schoolDaysList.indexOf(todayInt);
 
     // If current day is during a break, sets current day to the first day of when school resumes
-    if (currentDayIndex === -1) {
+    if (todayIndex === -1) {
         // Find which break the current day is in and iterate through list of date ranges
         for (let i = 0; i < (dateRangesInt.length - 1); i++) {
             // if current day is between end day of a range and start day of next range (aka. during a break)
-            if (currentDay > dateRangesInt[i][1] && currentDay < dateRangesInt[i+1][0]) {
-                currentDay = dateRangesInt[i+1][0];
-                currentDayIndex = schoolDaysList.indexOf(currentDay);
+            if (todayInt > dateRangesInt[i][1] && todayInt < dateRangesInt[i+1][0]) {
+                todayInt = dateRangesInt[i+1][0];
+                todayIndex = schoolDaysList.indexOf(todayInt);
+                todayUpdated = dateRanges[i+1][0];
                 break;
             }
+        }
+    }
+
+    // EXCLUDE WEEKENDS
+    if (document.getElementById("excludeWeekends").checked) {
+        // Modifies dateRanges so it just has ranges of dates from today to end of school year, including any breaks
+        for (let i = 0; i < dateRanges.length; i++) {
+            // If current day is between a range
+            if (todayUpdated.getTime() >= dateRanges[i][0].getTime() && todayUpdated.getTime() <= dateRanges[i][1].getTime()) {
+                dateRanges[i][0] = today;
+                dateRanges.splice(0, i);
+                break;
+            }
+        }
+        
+        // Find number of weekends
+        var weekendCounter = 0;
+        for (let i = 0; i < dateRanges.length; i++) {
+            let start = dateRanges[i][0];
+            let end = dateRanges[i][1];
+            let days = 1 + (Date.UTC(end.getFullYear(), end.getMonth(), end.getDate()) - Date.UTC(start.getFullYear(), start.getMonth(), start.getDate())) / 24 / 60 / 60 / 1000; // Find number of days between date range (inclusive)
+            let saturdays = Math.floor((start.getDay() + days) / 7);
+            let weekends = (saturdays*2)  
+            if (start.getDay() == 0) {
+                weekends++;
+            }
+            if (end.getDay() == 6) {
+                weekends--;
+            }
+            weekendCounter += weekends;
         }
     }
 
@@ -117,7 +146,10 @@ function calculateDollars() {
     dollars = (Math.round((dollars) * 1e2)/1e2).toFixed(2);
 
     // Finds number of school days left, including the current day
-    var schoolDaysLeft = schoolDaysList.length - (currentDayIndex);
+    var schoolDaysLeft = schoolDaysList.length - (todayIndex);
+    if (document.getElementById("excludeWeekends").checked) {
+        schoolDaysLeft = schoolDaysLeft - weekendCounter;
+    }
     var result = "$" + (Math.round((dollars / schoolDaysLeft) * 1e2)/1e2).toFixed(2); //toFixed(2) adds extra 0s if the number has less than 2 decimal places
     
     // DISPLAYS RESULTS
@@ -125,6 +157,7 @@ function calculateDollars() {
     for (let i = 0; i < resultsList.length; i++) {
         resultsList[i].style.display = "inline";
     }
+    
     // Today is ___.
     document.getElementById("today").innerHTML = dateFormat(today) + ".";
      

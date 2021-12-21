@@ -25,7 +25,7 @@
                         <br>
                         <input type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak">Include spring break</label>
                         <br>
-                        <input type="checkbox" id="ignoreWeekends"> <label for="ignoreWeekends">Ignore weekends</label>
+                        <input type="checkbox" id="excludeWeekends"> <label for="excludeWeekends">Exclude weekends</label>
                     </p>
                     <p>$ <input type="text" style="width: 100px;" id="dollars" autocomplete="off"/></p>
                     <p><input type="submit" value="Submit" id="submit"/></p> 
@@ -35,6 +35,7 @@
 
             <div class="col-sm-8">
                 <h1>Results</h1>
+                <p id="test"></p>
                 <div class="results">
                     <p>Today is <span id="today"></span></p>
                     <p>There are <span id="school-days-left"></span> day(s) left until the end of school, which is on <span id="last-day"></span>.</p>
