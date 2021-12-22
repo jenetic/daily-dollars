@@ -42,7 +42,7 @@ function calculateDollars() {
         return 1;
     }
     
-    // Date Ranges of school year
+    // Date ranges of school year
     const dateRanges = [
         // 2021
         [new Date(2021, 8, 21), new Date(2021, 11, 11)], // Winter break
@@ -112,6 +112,9 @@ function calculateDollars() {
         }
     }
 
+    // Finds number of school days left, including the current day
+    var schoolDaysLeft = schoolDaysList.length - todayIndex;
+
     // EXCLUDE WEEKENDS
     if (document.getElementById("excludeWeekends").checked) {
         // Modifies dateRanges so it just has ranges of dates from today to end of school year, including any breaks
@@ -132,26 +135,33 @@ function calculateDollars() {
             let days = 1 + (Date.UTC(end.getFullYear(), end.getMonth(), end.getDate()) - Date.UTC(start.getFullYear(), start.getMonth(), start.getDate())) / 24 / 60 / 60 / 1000; // Find number of days between date range (inclusive)
             let saturdays = Math.floor((start.getDay() + days) / 7);
             let weekends = (saturdays*2)  
-            if (start.getDay() == 0) {
-                weekends++;
-            }
-            if (end.getDay() == 6) {
-                weekends--;
-            }
+            if (start.getDay() == 0) { weekends++; }
+            if (end.getDay() == 6) { weekends--; }
             weekendCounter += weekends;
         }
+        // Modify schoolDaysLeft to exclude weekends
+        schoolDaysLeft -= weekendCounter;
+    }
+
+    // Exclude additional days
+    var excludeDays = document.getElementById("excludeDays").value;
+    if (!excludeDays) { excludeDays = 0; }
+
+    if (excludeDays % 1 != 0 || excludeDays < 0) {
+        alert("Error: Input a positive whole number.")
+        return 1;
+    }
+
+    if (schoolDaysLeft - excludeDays <= 0) {
+        alert("Error: Number of additional excluded days exceeds number of days left of school.");
+        return 1;
     }
 
     // Round user input to 2 decimal places
     dollars = (Math.round((dollars) * 1e2)/1e2).toFixed(2);
 
-    // Finds number of school days left, including the current day
-    var schoolDaysLeft = schoolDaysList.length - (todayIndex);
-    if (document.getElementById("excludeWeekends").checked) {
-        schoolDaysLeft = schoolDaysLeft - weekendCounter;
-    }
-    var result = "$" + (Math.round((dollars / schoolDaysLeft) * 1e2)/1e2).toFixed(2); //toFixed(2) adds extra 0s if the number has less than 2 decimal places
-    
+    var result = "$" + (Math.round((dollars / (schoolDaysLeft - excludeDays)) * 1e2)/1e2).toFixed(2); //toFixed(2) adds extra 0s if the number has less than 2 decimal places
+
     // DISPLAYS RESULTS
     const resultsList = document.getElementsByClassName("results"); // getElementsByClasssNames returns an array
     for (let i = 0; i < resultsList.length; i++) {
@@ -164,6 +174,9 @@ function calculateDollars() {
     // There are ___ days left until the end of school, which is ___.
     document.getElementById("school-days-left").innerHTML = schoolDaysLeft;
     document.getElementById("last-day").innerHTML = dateFormat(lastDay);
+
+    // ___ additional days are excluded from the calculation.
+    document.getElementById("days-excluded").innerHTML = excludeDays;
 
     // If you have ___ left, you can spend ___ each day to have enough for the rest of the school year.
     document.getElementById("og-dollars").innerHTML = dollars;

@@ -26,7 +26,7 @@ if (wknd) {
     // Find number of weekends
     var weekendCounter = 0;
     for (let i = 0; i < dateRanges.length; i++) {
-        let start = dateRanges[i][0];
+        let start, end = dateRanges[i][0], ;
         let end = dateRanges[i][1];
         let days = 1 + (Date.UTC(end.getFullYear(), end.getMonth(), end.getDate()) - Date.UTC(start.getFullYear(), start.getMonth(), start.getDate())) / 24 / 60 / 60 / 1000; // Find number of days between date range (inclusive)
         let saturdays = Math.floor((start.getDay() + days) / 7);
