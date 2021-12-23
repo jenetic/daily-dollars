@@ -172,7 +172,7 @@ function calculateDollars() {
     document.getElementById("today").innerHTML = dateFormat(today) + ".";
      
     // There are ___ days left until the end of school, which is ___.
-    document.getElementById("school-days-left").innerHTML = schoolDaysLeft;
+    document.getElementById("school-days-left").innerHTML = schoolDaysLeft - excludeDays;
     document.getElementById("last-day").innerHTML = dateFormat(lastDay);
 
     // ___ additional days are excluded from the calculation.
