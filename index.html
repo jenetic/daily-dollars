@@ -2,6 +2,16 @@
 
 <html lang="en">
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFNV84LZHL"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-FFNV84LZHL');
+        </script>
+        
         <!-- Required meta tags for Bootstrap -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">   
@@ -43,20 +53,19 @@
 
             <div class="col-sm-8">
                 <div>
-                    <h1>About</h1>
-                    <p>
-                        Based on the amount of remaining UC San Diego dining dollars entered, this tool will calculate how much you can spend daily between today and the end of the school year to have enough money. 
-                    </p>
-                </div>
-
-                <div>
-                    <h1>Results</h1>
-                    <p id="test"></p>
                     <div class="results">
+                        <h1>Results</h1>
                         <p>Today is <span id="today"></span></p>
                         <p>There are <span id="school-days-left"></span> day(s) left until the end of school, which is on <span id="last-day"></span>.</p>
                         <p>If you have $<span id="og-dollars"></span> left, you can spend <span id="result-dollars"></span> each day to have enough for the rest of the school year. <span id="days-excluded"></span> additional days are excluded from this calculation.</p>
                     </div> 
+                </div>
+
+                <div>
+                    <h1>About</h1>
+                    <p>
+                        Based on the amount of remaining UC San Diego dining dollars entered, this tool will calculate how much you can spend daily between today and the end of the school year to have enough money. 
+                    </p>
                 </div>
             </div>
         </div>
