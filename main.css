@@ -94,6 +94,10 @@ body {
 }
 
 .output {
+    color: #a9b9d6;
+}
+
+#result-dollars {
     color: #0096c7;
 }
 

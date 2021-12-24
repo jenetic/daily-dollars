@@ -38,25 +38,23 @@
                 <div class="input-space">
                     <form id="form">
                         <p>
-                            Enter in amount of remaining dining dollars.
+                            Remaining dining dollars:
                             <br>
-                            <p>
-                                <span style="color: #0096c7">$</span>  <input class="text-input" type="text" style="width: 65px;" id="dollars" autocomplete="off"/>
-                            </p>
-                            <p>
-                                <span class="accent">Include:</span>
-                                <br>
-                                <input class="checkbox" type="checkbox" id="includeWinterBreak"> <label for="includeWinterBreak">Winter break </label>
-                                <br>
-                                <input class="checkbox" type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak">Spring break</label>
-                            </p>
-                            <p>
-                                <span class="accent">Exclude:</span>
-                                <br>
-                                <input class="checkbox" type="checkbox" id="excludeWeekends"> <label for="excludeWeekends">Weekends</label>
-                                <br>
-                                <input class="text-input" type="text" style="width: 30px;" id="excludeDays" autocomplete="off"/> additional days
-                            </p>
+                            <span style="color: #0096c7">$</span>  <input class="text-input" type="text" style="width: 65px;" id="dollars" autocomplete="off"/>
+                        </p>
+                        <p>
+                            <span class="accent">Include:</span>
+                            <br>
+                            <input class="checkbox" type="checkbox" id="includeWinterBreak"> <label for="includeWinterBreak">Winter break </label>
+                            <br>
+                            <input class="checkbox" type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak">Spring break</label>
+                        </p>
+                        <p>
+                            <span class="accent">Exclude:</span>
+                            <br>
+                            <input class="checkbox" type="checkbox" id="excludeWeekends"> <label for="excludeWeekends">Weekends</label>
+                            <br>
+                            <input class="text-input" type="text" style="width: 30px;" id="excludeDays" autocomplete="off"/> additional days
                         </p>
                         <p><input class="grow" type="submit" value="Submit" id="submit"/></p> 
                     </form> 
@@ -66,13 +64,13 @@
             <div class="col-sm-8">
                 <div class="about">
                     <p>
-                        Based on the amount of remaining dining dollars entered, this tool will calculate how much you can spend daily between today and the end of the school year to have enough money. Dates are based on the UC San Diego/UC system calendar.
+                        Based on the amount of remaining dining dollars, this tool calculates how much you can spend daily between today and the end of the school year to have enough money. Dates are based on the UC San Diego/UC system calendar.
                     </p>
                     <div class="results">
                     <h2>Results</h2>
                     <p>Today is <span class="output" id="today"></span>.</p>
                     <p>There are <span class="output" id="school-days-left"></span> left until the end of school, which is on <span class="output" id="last-day"></span>.</p>
-                    <p>If you have <span class="output" id="og-dollars"></span>, you can spend <span class="output" id="result-dollars"></span> to have enough for the rest of the school year. <span class="output" id="days-excluded"></span> are excluded from this calculation.</p>
+                    <p>If you have <span class="output" id="og-dollars"></span>, you can spend <span id="result-dollars"></span> to have enough for the rest of the school year. <span class="output" id="days-excluded"></span> are excluded from this calculation.</p>
                 </div> 
                 </div>
                 
