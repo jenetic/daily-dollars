@@ -1,9 +1,103 @@
+h1 {
+    font-family: 'Helvetica', sans-serif;
+    padding-top: 10px;
+    font-size: 175% !important;
+    color: #ba8900;
+}
+
+h2 {
+    font-family: 'Helvetica', sans-serif;
+    padding-top: 10px;
+    font-size: 150% !important;
+    color: #ba8900;
+}
+
+p, label {
+    font-family: 'Helvetica', sans-serif;
+    color: #7c879c;
+}
+
+body {
+    background-color: #121212 !important;
+}
+
+/* GROW */
+.grow {
+    transition: transform .2s;
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
+
+.accent {
+    color: #ba8900;
+}
+
+.checkbox {
+    opacity: 0.2;
+    background-color: #ba8900;
+    border-radius: 5px;
+}
+
+.checkbox:checked {
+    opacity: 1;
+}
+
+.text-input {
+    border-style: none;
+    background: transparent;
+    border-bottom: 3px solid #0096c7;
+    color: #0096c7;
+}
+
+.text-input:focus {
+    outline-width: 0;
+}
+
+#submit {
+    margin: 15px 0px 0px 0px;
+    background-color: #0096c7;
+    border-style: none;
+    border-radius: 300px;
+    color: #001219;
+    padding: 7px 17px;
+}
+
+#submit:hover {
+    background-color: #006a9c;
+}
+
+#submit:active {
+    transform: translateY(6px);
+}
+
+.header {
+    padding: 25px 0px 0px 0px;
+}
+
+.input-space {
+    background-color: #181924;
+    border-radius: 15px;
+    padding: 20px 17px 17px 25px;
+}
+
+.about {
+    margin-top: 5px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+
 .results {
     display: none;
 }
 
+.output {
+    color: #0096c7;
+}
+
 .bottom-center {
-    /* margin: auto; */
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -11,24 +105,22 @@
     text-align: center;
 }
 
+.contact {
+    font-size: 87%;
+    color: #39435c;
+}
+
 /* PADDING */
 .content {
     padding-left: 200px;
     padding-right: 200px;
-    padding-top: 40px;
+    padding-top: 30px;
     padding-bottom: 50px;
 }
 
-@media (max-width: 1043px) {
+@media (max-width: 1148px) {
     .content {
-        padding-left: 65px;
-        padding-right: 65px;
-    }
-}
-
-@media (max-width: 574px) {
-    .content {
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
 }

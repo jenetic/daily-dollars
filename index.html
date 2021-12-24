@@ -5,13 +5,13 @@
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFNV84LZHL"></script>
         <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        gtag('config', 'G-FFNV84LZHL');
+            gtag('config', 'G-FFNV84LZHL');
         </script>
-        
+
         <!-- Required meta tags for Bootstrap -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">   
@@ -20,58 +20,67 @@
         <link href='main.css' rel='stylesheet'>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Sans+Pro:wght@900&display=swap" rel="stylesheet">
+
         <title>Dining Dollars</title>
     </head>
     <body>
+        <div class="row text-center header">
+            <h1>UCSD Dining Dollars Calculator</h1>
+
+        </div>
+
         <div class="row content">
             <div class="col-sm-4">
-                <h1>UCSD Dining Dollars Calculator</h1>
-                <p>
-
-                </p>
-                <form id="form">
-                    <p>
+                <div class="input-space">
+                    <form id="form">
                         <p>
-                            Enter in amount of remaining dining dollars. 
+                            Enter in amount of remaining dining dollars.
                             <br>
-                            $ <input type="text" style="width: 100px;" id="dollars" autocomplete="off"/>
+                            <p>
+                                <span style="color: #0096c7">$</span>  <input class="text-input" type="text" style="width: 65px;" id="dollars" autocomplete="off"/>
+                            </p>
+                            <p>
+                                <span class="accent">Include:</span>
+                                <br>
+                                <input class="checkbox" type="checkbox" id="includeWinterBreak"> <label for="includeWinterBreak">Winter break </label>
+                                <br>
+                                <input class="checkbox" type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak">Spring break</label>
+                            </p>
+                            <p>
+                                <span class="accent">Exclude:</span>
+                                <br>
+                                <input class="checkbox" type="checkbox" id="excludeWeekends"> <label for="excludeWeekends">Weekends</label>
+                                <br>
+                                <input class="text-input" type="text" style="width: 30px;" id="excludeDays" autocomplete="off"/> additional days
+                            </p>
                         </p>
-                        <input type="checkbox" id="includeWinterBreak"> <label for="includeWinterBreak">Include winter break </label>
-                        <br>
-                        <input type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak">Include spring break</label>
-                        <br>
-                        <input type="checkbox" id="excludeWeekends"> <label for="excludeWeekends">Exclude weekends</label>
-                        <br>
-                        <p>
-                            Exclude <input type="text" style="width: 40px;" id="excludeDays" autocomplete="off"/> additional days
-                        </p>
-                    </p>
-                    <p><input type="submit" value="Submit" id="submit"/></p> 
-                </form>
-                <p id="test2"></p>
+                        <p><input class="grow" type="submit" value="Submit" id="submit"/></p> 
+                    </form> 
+                </div>
             </div>
 
             <div class="col-sm-8">
-                <div>
-                    <div class="results">
-                        <h1>Results</h1>
-                        <p>Today is <span id="today"></span></p>
-                        <p>There are <span id="school-days-left"></span> day(s) left until the end of school, which is on <span id="last-day"></span>.</p>
-                        <p>If you have $<span id="og-dollars"></span> left, you can spend <span id="result-dollars"></span> each day to have enough for the rest of the school year. <span id="days-excluded"></span> additional days are excluded from this calculation.</p>
-                    </div> 
-                </div>
-
-                <div>
-                    <h1>About</h1>
+                <div class="about">
                     <p>
-                        Based on the amount of remaining UC San Diego dining dollars entered, this tool will calculate how much you can spend daily between today and the end of the school year to have enough money. 
+                        Based on the amount of remaining dining dollars entered, this tool will calculate how much you can spend daily between today and the end of the school year to have enough money. Dates are based on the UC San Diego/UC system calendar.
                     </p>
+                    <div class="results">
+                    <h2>Results</h2>
+                    <p>Today is <span class="output" id="today"></span>.</p>
+                    <p>There are <span class="output" id="school-days-left"></span> left until the end of school, which is on <span class="output" id="last-day"></span>.</p>
+                    <p>If you have <span class="output" id="og-dollars"></span>, you can spend <span class="output" id="result-dollars"></span> to have enough for the rest of the school year. <span class="output" id="days-excluded"></span> are excluded from this calculation.</p>
+                </div> 
                 </div>
+                
             </div>
         </div>
         
-        <div class="bottom-center" style="display: none;">
-            <p>
+        <div class="bottom-center">
+            <p class="contact">
                 Last updated [insert date]. Contact 
                 <!-- Begin Email Cloaking -->
                 <script language='javascript' type='text/javascript'">
@@ -82,7 +91,7 @@
                     x = '&#64;';
                     eml = '&#106;&#57;&#108;&#97;&#109;' + x + '&#117;&#99;&#115;&#100;&#46;&#101;&#100;&#117;';
                     msg = '&#106;&#57;&#108;&#97;&#109;' + x + '&#117;&#99;&#115;&#100;&#46;&#101;&#100;&#117;';
-                    out = '<a class="cloak_eml" style= "text-decoration: none" href="mailto:' + eml + '">' + msg + '</a>';
+                    out = eml;
                     document.write(out);
                     // -->
                 </script>

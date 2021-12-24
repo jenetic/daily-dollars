@@ -169,18 +169,19 @@ function calculateDollars() {
     }
     
     // Today is ___.
-    document.getElementById("today").innerHTML = dateFormat(today) + ".";
+    document.getElementById("today").innerHTML = dateFormat(today);
      
     // There are ___ days left until the end of school, which is ___.
-    document.getElementById("school-days-left").innerHTML = schoolDaysLeft - excludeDays;
+    document.getElementById("school-days-left").innerHTML = schoolDaysLeft - excludeDays + " day(s)";
     document.getElementById("last-day").innerHTML = dateFormat(lastDay);
 
-    // ___ additional days are excluded from the calculation.
-    document.getElementById("days-excluded").innerHTML = excludeDays;
-
     // If you have ___ left, you can spend ___ each day to have enough for the rest of the school year.
-    document.getElementById("og-dollars").innerHTML = dollars;
-    document.getElementById("result-dollars").innerHTML = result;
+    document.getElementById("og-dollars").innerHTML = "$" + dollars + " left";
+    document.getElementById("result-dollars").innerHTML = result + " each day";
+
+    // ___ additional days are excluded from the calculation.
+    document.getElementById("days-excluded").innerHTML = excludeDays + " additional days";
+
 
     return 0;
 }
