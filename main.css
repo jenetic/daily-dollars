@@ -12,6 +12,16 @@ h2 {
     color: #ba8900;
 }
 
+a {
+    text-decoration: none !important;
+    color: #a9b9d6 !important;
+
+}
+
+a:hover {
+    color: #0096c7 !important;
+}
+
 p, label {
     font-family: 'Helvetica', sans-serif;
     color: #7c879c;
@@ -35,13 +45,21 @@ body {
 }
 
 .checkbox {
-    opacity: 0.2;
-    background-color: #ba8900;
-    border-radius: 5px;
+    appearance: none;
+    background-color: #7c879c;
+    opacity: 0.5;
+    padding: 6px;
+    border-radius: 10px;
 }
 
 .checkbox:checked {
+    background-color: #0096c7;
     opacity: 1;
+    border: 1px solid #0096c7;
+}
+
+.checkbox:checked + label {
+    color: #0096c7;
 }
 
 .text-input {
@@ -73,7 +91,7 @@ body {
 }
 
 .header {
-    padding: 25px 0px 0px 0px;
+    padding: 28px 0px 0px 0px;
 }
 
 .input-space {

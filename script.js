@@ -38,7 +38,7 @@ function calculateDollars() {
     
     // Check if user inputted a negative number or something that isn't a number    
     if (dollars == "" || dollars < 0 || !(!isNaN(dollars) && !isNaN(parseFloat(dollars)))) {
-        alert("Error: Input must be a positive number.");
+        alert("Error: 'Remaining dining dollars' must be a positive number.");
         return 1;
     }
     
@@ -148,7 +148,7 @@ function calculateDollars() {
     if (!excludeDays) { excludeDays = 0; }
 
     if (excludeDays % 1 != 0 || excludeDays < 0) {
-        alert("Error: Input a positive whole number.")
+        alert("Error: 'Exclude additional days' must be a positive whole number.")
         return 1;
     }
 
@@ -178,10 +178,6 @@ function calculateDollars() {
     // If you have ___ left, you can spend ___ each day to have enough for the rest of the school year.
     document.getElementById("og-dollars").innerHTML = "$" + dollars + " left";
     document.getElementById("result-dollars").innerHTML = result + " each day";
-
-    // ___ additional days are excluded from the calculation.
-    document.getElementById("days-excluded").innerHTML = excludeDays + " additional days";
-
 
     return 0;
 }
