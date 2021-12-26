@@ -92,6 +92,8 @@ body {
 
 .header {
     padding: 28px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
 }
 
 .input-space {
