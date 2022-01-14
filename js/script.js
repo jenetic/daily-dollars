@@ -10,7 +10,7 @@ function daysFromSchoolStartList(dateRanges, dateRangesInt) {
     for (let i = 0; i < dateRanges.length; i++) {
         const row = [];
         row.push(daysFromSchoolStart(dateRanges[0][0], dateRanges[i][0])); // Start of range
-        row.push(daysFromSchoolStart(dateRanges[0][0],dateRanges[i][1])); // End of range
+        row.push(daysFromSchoolStart(dateRanges[0][0], dateRanges[i][1])); // End of range
         dateRangesInt.push(row);
     }
 }
