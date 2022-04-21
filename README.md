@@ -1,4 +1,10 @@
-# UCSD Daily Dollars
-Based on the amount of remaining dining dollars entered, this tool calculates the recommended daily spending amount between today and the end of the school year (based on the UC San Diego calendar) to have enough money.
+# Daily Dollars
 
-Click [here](https://srnq.github.io/daily-dollars/) to try it out!
+Based on the amount of remaining dining dollars entered, this tool calculates the recommended daily spending amount between today and the end of the UC San Diego school year to have enough money based on user input of holiday breaks, weekends, and additional days.
+
+## Demo
+Try it out [here](https://srnq.github.io/daily-dollars/)!
+
+## Built With
+This was built with JavaScript, HTML, and CSS.
+
