@@ -4,6 +4,7 @@ Based on the amount of remaining dining dollars entered, this tool calculates th
 
 ## Demo
 Try it out [here](https://srnq.github.io/daily-dollars/)!
+![website screenshot](img/screenshot.png)
 
 ## Built With
 This was built with JavaScript, HTML, and CSS.
