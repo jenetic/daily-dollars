@@ -24,35 +24,40 @@
     <body>
         <!-- NEW START-->
         <div id="header">
-            <h1>UCSD Daily Dollars</h1>
+            <!-- <div id="header-contents"> -->
+                <h1>UCSD Daily Dollars</h1>
+                <p>
+                    This tool calculates the recommended daily spending amount between today and the end of the school year based on your remaining dining dollars. Dates are based on the UC San Diego/UC system <a href="https://blink.ucsd.edu/instructors/resources/academic/calendars/2021.html" target="_blank">calendar</a>.
+                </p>
+                <p id="made-by">Made by <a href="http://github.com/jenetic/daily-dollars" target="_blank">jenetic</a></p>
+            <!-- </div> -->
         </div>
 
         <div id="sidebar">
-            <form id="form">
-                <div>
-                    <p>Remaining dining dollars</p>
-                    <input type="text" id="dollars" autocomplete="off"/>
-                </div>
-                <div>
-                    <p>Include:</p>
-                    <input class="checkbox" type="checkbox" id="includeWinterBreak"> <label for="includeWinterBreak" class="label">Winter break </label>
-                    <br>
-                    <input class="checkbox" type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak" class="label">Spring break</label>
-                </div>
-                <div>
-                    <p>Exclude:</p>
-                    <input class="checkbox" type="checkbox" id="excludeWeekends"> <label for="excludeWeekends" class="label">Weekends</label>
-                    <br>
-                    <input class="text-input" type="text" id="excludeDays" autocomplete="off"/> additional days
-                </div>
-                <input type="submit" value="Submit" id="submit"/>
-            </form>
+            <div id="form-wrapper">
+                <form id="form">
+                    <div class="form-object">
+                        <p id="remaining-label">Remaining dining dollars</p>
+                        $ <input class="text-input" type="text" id="dollars" autocomplete="off"/>
+                    </div>
+                    <div class="form-object">
+                        <p>Include:</p>
+                        <input class="checkbox" type="checkbox" id="includeWinterBreak"> <label for="includeWinterBreak" class="label">Winter break </label>
+                        <br>
+                        <input class="checkbox" type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak" class="label">Spring break</label>
+                    </div>
+                    <div class="form-object">
+                        <p>Exclude:</p>
+                        <input class="checkbox" type="checkbox" id="excludeWeekends"> <label for="excludeWeekends" class="label">Weekends</label>
+                        <br>
+                        <input class="text-input" type="text" id="excludeDays" autocomplete="off"/> additional days
+                    </div>
+                    <input type="submit" value="Submit" id="submit" class="form-object"/>
+                </form>
+            </div>
         </div>
 
         <div id="content">
-            <p>
-                This tool calculates the recommended daily spending amount between today and the end of the school year based on your remaining dining dollars. Dates are based on the UC San Diego/UC system <a href="https://blink.ucsd.edu/instructors/resources/academic/calendars/2021.html" target="_blank">calendar</a>.
-            </p>
             <div id="results">
                 <h2>Results</h2>
                 <p>Today is <span class="output" id="today"></span>.</p>

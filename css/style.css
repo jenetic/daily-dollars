@@ -1,25 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --background: black;
+  --text: white;
+  --link: red;
+  --sidebar: gray;
+
+}
+
 body {
   display: grid;
   grid-template-columns: 35% auto;
-  grid-template-rows: 5rem auto;
+  grid-template-rows: 10rem auto;
   grid-template-areas: "header header" "sidebar content";
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+h1 {
+  margin: 0.5rem;  
+}
+
+h2 {
+  margin: 0rem auto auto;
+}
+
+p {
+  margin: 0.2rem 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link);
+}
+
+.form-object {
+  margin: 0.5rem 0rem;
+}
+
+.output {
+  color: blue;
 }
 
 #header {
   grid-area: header;
-  background-color: blue;
+  margin: auto 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+#header h1 {
+  text-align: center;
+}
+
 
 #sidebar {
   grid-area: sidebar;
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+#form-wrapper {
+  padding: 0.3rem 1rem 1rem;
+  border-radius: 0.8rem;
+  background-color: var(--sidebar);
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+#dollars {
+  width: 65px;
+}
+
+#excludeDays {
+  width: 30px;
 }
 
 #content {
   grid-area: content;
-  background-color: yellow;
+  margin: 1rem;
 }
 
 #results {
   display: none;
+}
+
+#results p {
+  margin: 1rem 0;
+}
+
+#result-dollars {
+  color: green;
+}
+
+#made-by {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+}
+
+@media (min-width: 1000px) {
+  body {
+    margin: auto 20%;
+  }
+}
+@media (max-width: 480px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
 }
