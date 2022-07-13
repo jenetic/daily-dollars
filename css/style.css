@@ -1,0 +1,25 @@
+body {
+  display: grid;
+  grid-template-columns: 35% auto;
+  grid-template-rows: 5rem auto;
+  grid-template-areas: "header header" "sidebar content";
+}
+
+#header {
+  grid-area: header;
+  background-color: blue;
+}
+
+#sidebar {
+  grid-area: sidebar;
+  background-color: red;
+}
+
+#content {
+  grid-area: content;
+  background-color: yellow;
+}
+
+#results {
+  display: none;
+}
