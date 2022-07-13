@@ -91,10 +91,10 @@ const calculateDollars = () => {
     }
 
     // If current day is after last day of school, send message that school is over for the current school year
-    // else if (todayInt > dateRangesInt[dateRangesInt.length - 1][1]) {
-    //     alert("Error: Current day is after the end of the school year.");
-    //     return 1;
-    // }
+    else if (todayInt > dateRangesInt[dateRangesInt.length - 1][1]) {
+        alert("Error: Current day is after the end of the school year.");
+        return 1;
+    }
 
     // Because the days before 1st and after last day of school are taken care of, any day that isn't in the list has to be on a break
     let todayIndex = schoolDaysList.indexOf(todayInt);
