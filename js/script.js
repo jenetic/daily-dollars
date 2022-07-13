@@ -38,8 +38,9 @@ const calculateDollars = () => {
     
     // Check if user inputted a negative number or something that isn't a number    
     if (dollars == "" || dollars < 0 || !(!isNaN(dollars) && !isNaN(parseFloat(dollars)))) {
-        alert("Error: 'Remaining dining dollars' must be a positive number.");
-        return 1;
+        document.getElementById("error").textContent = "Error: 'Remaining dining dollars' must be a positive number.";
+        document.getElementById("results").style.display = "none";;
+        return;
     }
     
     // Date ranges of school year
@@ -92,8 +93,9 @@ const calculateDollars = () => {
 
     // If current day is after last day of school, send message that school is over for the current school year
     else if (todayInt > dateRangesInt[dateRangesInt.length - 1][1]) {
-        alert("Error: Current day is after the end of the school year.");
-        return 1;
+        document.getElementById("error").textContent = "Error: Current day is after the end of the school year.";
+        document.getElementById("results").style.display = "none";
+        return;
     }
 
     // Because the days before 1st and after last day of school are taken care of, any day that isn't in the list has to be on a break
@@ -149,13 +151,15 @@ const calculateDollars = () => {
     if (!excludeDays) { excludeDays = 0; }
 
     if (excludeDays % 1 != 0 || excludeDays < 0) {
-        alert("Error: 'Exclude additional days' must be a positive whole number.")
-        return 1;
+        document.getElementById("error").textContent = "Error: 'Exclude additional days' must be a positive whole number.";
+        document.getElementById("results").style.display = "none";
+        return;
     }
 
     if (schoolDaysLeft - excludeDays <= 0) {
-        alert("Error: Number of additional excluded days exceeds number of days left of school.");
-        return 1;
+        document.getElementById("error").textContent = "Error: Number of additional excluded days exceeds number of days left of school.";
+        document.getElementById("results").style.display = "none";
+        return;
     }
 
     // Round user input to 2 decimal places
@@ -164,6 +168,8 @@ const calculateDollars = () => {
     const result = "$" + (Math.round((dollars / (schoolDaysLeft - excludeDays)) * 1e2)/1e2).toFixed(2); //toFixed(2) adds extra 0s if the number has less than 2 decimal places
 
     // DISPLAYS RESULTS
+    document.getElementById("error").textContent = "";
+
     document.getElementById("results").style.display = "inline";
 
     // Today is ___.
