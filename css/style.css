@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
-  --background: black;
-  --text: white;
-  --link: red;
-  --sidebar: gray;
+  --background: #121212;
+  --text: #7c879c;
+  --link: #a9b9d6;
+  --sidebar: #1e2031;
+  --color1: #30aaec;
+  --color2: #ed9557;
 
 }
 
 body {
   display: grid;
-  grid-template-columns: 35% auto;
-  grid-template-rows: 10rem auto;
+  grid-template-columns: 40% auto;
+  grid-template-rows: 12rem auto;
   grid-template-areas: "header header" "sidebar content";
   font-family: 'JetBrains Mono', monospace;
   background-color: var(--background);
@@ -19,11 +21,13 @@ body {
 }
 
 h1 {
-  margin: 0.5rem;  
+  margin: 1rem auto;  
+  color: var(--color1);
 }
 
 h2 {
   margin: 0rem auto auto;
+  color: var(--color2);
 }
 
 p {
@@ -35,12 +39,30 @@ a {
   color: var(--link);
 }
 
+a:hover {
+  color: var(--color1);
+}
+
 .form-object {
   margin: 0.5rem 0rem;
 }
 
+.sidebar-header {
+  color: var(--color2);
+}
+
+.text-input {
+  background-color: none;
+  outline: none;
+  background-color: var(--sidebar);
+  border: none;
+  border-bottom: solid 3px var(--color1);
+  color: var(--color1);
+  font-family: 'JetBrains Mono', monospace;
+}
+
 .output {
-  color: blue;
+  color: var(--color2);
 }
 
 #header {
@@ -64,7 +86,7 @@ a {
 }
 
 #form-wrapper {
-  padding: 0.3rem 1rem 1rem;
+  padding: 0.3rem 1.5rem 1rem;
   border-radius: 0.8rem;
   background-color: var(--sidebar);
 }
@@ -76,11 +98,31 @@ a {
 }
 
 #dollars {
-  width: 65px;
+  width: 4rem;
+}
+
+#remaining-value-wrapper {
+  color: var(--color1);
 }
 
 #excludeDays {
-  width: 30px;
+  width: 1.5rem;
+}
+
+#submit {
+  background-color: var(--color1);
+  border: none;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+#submit:hover {
+  background-color: var(--color2);
+}
+
+#submit:active {
+  background-color: var(--link);
 }
 
 #content {
@@ -97,12 +139,13 @@ a {
 }
 
 #result-dollars {
-  color: green;
+  color: var(--color1);
 }
 
 #made-by {
   margin: 0.5rem 0 0;
   font-size: 0.8rem;
+  opacity: 0.7;
 }
 
 @media (min-width: 1000px) {

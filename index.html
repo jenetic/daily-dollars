@@ -22,32 +22,34 @@
         <title>UCSD Daily Dollars</title>
     </head>
     <body>
-        <!-- NEW START-->
         <div id="header">
-            <!-- <div id="header-contents"> -->
-                <h1>UCSD Daily Dollars</h1>
-                <p>
-                    This tool calculates the recommended daily spending amount between today and the end of the school year based on your remaining dining dollars. Dates are based on the UC San Diego/UC system <a href="https://blink.ucsd.edu/instructors/resources/academic/calendars/2021.html" target="_blank">calendar</a>.
-                </p>
-                <p id="made-by">Made by <a href="http://github.com/jenetic/daily-dollars" target="_blank">jenetic</a></p>
-            <!-- </div> -->
+            <h1>UCSD Daily Dollars</h1>
+            <p>
+                This tool calculates the recommended daily spending amount between today and the end of the school year based on your remaining dining dollars. Dates are based on the UC San Diego/UC system <a href="https://blink.ucsd.edu/instructors/resources/academic/calendars/2021.html" target="_blank">calendar</a>.
+            </p>
+            <p id="made-by">[Made by <a href="http://github.com/jenetic/daily-dollars" target="_blank">@jenetic</a>]</p>
         </div>
 
         <div id="sidebar">
             <div id="form-wrapper">
                 <form id="form">
                     <div class="form-object">
-                        <p id="remaining-label">Remaining dining dollars</p>
-                        $ <input class="text-input" type="text" id="dollars" autocomplete="off"/>
+                        <p class="sidebar-header">Remaining dining dollars:</p>
+                        <p id="remaining-value-wrapper">
+                            $
+                            <span>
+                                <input class="text-input" type="text" id="dollars" autocomplete="off"/>
+                            </span>
+                        </p>
                     </div>
                     <div class="form-object">
-                        <p>Include:</p>
+                        <p class="sidebar-header">Include:</p>
                         <input class="checkbox" type="checkbox" id="includeWinterBreak"> <label for="includeWinterBreak" class="label">Winter break </label>
                         <br>
                         <input class="checkbox" type="checkbox" id="includeSpringBreak"> <label for="includeSpringBreak" class="label">Spring break</label>
                     </div>
                     <div class="form-object">
-                        <p>Exclude:</p>
+                        <p class="sidebar-header">Exclude:</p>
                         <input class="checkbox" type="checkbox" id="excludeWeekends"> <label for="excludeWeekends" class="label">Weekends</label>
                         <br>
                         <input class="text-input" type="text" id="excludeDays" autocomplete="off"/> additional days
@@ -65,8 +67,6 @@
                 <p>If you have <span class="output" id="og-dollars"></span>, you can spend <b><span id="result-dollars"></span></b> to have enough for the rest of the school year.
             </div> 
         </div>
-
-        <!-- NEW END -->
     <script type="text/javascript" src="js/script.js"></script>
     </body>
 </html>

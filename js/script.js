@@ -44,10 +44,11 @@ const calculateDollars = () => {
     
     // Date ranges of school year
     const dateRanges = [
-        // 2021
-        [new Date(2021, 8, 21), new Date(2021, 11, 11)], // Winter break
-        [new Date(2022, 0, 3), new Date(2022, 2, 19)], // Spring break
-        [new Date(2022, 2, 28), new Date(2022, 5, 10)] 
+        // 2022
+        // TODO: fix mechanics involving the first day 
+        [new Date(2022, 5, 19), new Date(2022, 11, 10)], // Winter break
+        [new Date(2023, 0, 4), new Date(2023, 2, 25)], // Spring break
+        [new Date(2023, 3, 3), new Date(2023, 5, 16)] 
     ];
     let firstDay = dateRanges[0][0];
     let lastDay = dateRanges[dateRanges.length - 1][1];
