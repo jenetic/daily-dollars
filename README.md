@@ -4,7 +4,7 @@ Based on the amount of remaining dining dollars entered, this tool calculates th
 
 ## Demo
 Try it out [here](https://jenetic.github.io/daily-dollars/)!
-![website screenshot](img/screenshot.png)
+![website screenshot](screenshot.png)
 
 ## Built With
 This was built with JavaScript, HTML, and CSS.
