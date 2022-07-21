@@ -1,3 +1,5 @@
+import './style.css';
+
 // Note: Program counts the current day as one day.
 
 // Converts day into int value, with  as the first date in dateRanges array
