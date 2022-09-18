@@ -49,35 +49,42 @@ const calculateDollars = (): void => {
     }
     
     // Date ranges of school year
-    const dateRanges: Date[][] = [
+    let dateRanges: Date[][] = [
         // 2022
         // TODO: fix mechanics involving the first day 
         [new Date(2022, 5, 19), new Date(2022, 11, 10)], // Winter break
         [new Date(2023, 0, 4), new Date(2023, 2, 25)], // Spring break
         [new Date(2023, 3, 3), new Date(2023, 5, 16)] 
     ];
+    
+    // Check if user checked rollover
+    let rollover: boolean = (<HTMLInputElement>document.getElementById("rollover")).checked;
+    if (rollover) {
+        dateRanges = [dateRanges[0]];
+    } else {
+        // CHECK IF BREAKS ARE INCLUDED
+        let includeWinterBreak: boolean = (<HTMLInputElement>document.getElementById("includeWinterBreak")).checked;
+        let includeSpringBreak: boolean = (<HTMLInputElement>document.getElementById("includeSpringBreak")).checked;
+        
+        // If both include winter and spring break are checked, edit dateRanges array to remove breaks
+        if (includeWinterBreak && includeSpringBreak) {
+            dateRanges[0][1] = dateRanges[2][1];
+            dateRanges.splice(1, 2);
+        }
+        // If just include winter break is checked, edit dateRanges array to remove winter break
+        else if (includeWinterBreak) {
+            dateRanges[0][1] = dateRanges[1][1];
+            dateRanges.splice(1, 1);
+        }
+        // If just include spring break is checked, edit dateRanges array to remove spring break
+        else if (includeSpringBreak) {
+            dateRanges[1][1] = dateRanges[2][1];
+            dateRanges.splice(2, 1);
+        }
+    }
+
     let firstDay = dateRanges[0][0];
     let lastDay = dateRanges[dateRanges.length - 1][1];
-    
-    // CHECK IF BREAKS ARE INCLUDED
-    let includeWinterBreak: boolean = (<HTMLInputElement>document.getElementById("includeWinterBreak")).checked;
-    let includeSpringBreak: boolean = (<HTMLInputElement>document.getElementById("includeSpringBreak")).checked;
-    
-    // If both include winter and spring break are checked, edit dateRanges array to remove breaks
-    if (includeWinterBreak && includeSpringBreak) {
-        dateRanges[0][1] = dateRanges[2][1];
-        dateRanges.splice(1, 2);
-    }
-    // If just include winter break is checked, edit dateRanges array to remove winter break
-    else if (includeWinterBreak) {
-        dateRanges[0][1] = dateRanges[1][1];
-        dateRanges.splice(1, 1);
-    }
-    // If just include spring break is checked, edit dateRanges array to remove spring break
-    else if (includeSpringBreak) {
-        dateRanges[1][1] = dateRanges[2][1];
-        dateRanges.splice(2, 1);
-    }
 
     // Make school days list from date ranges
     const dateRangesInt: number[][] = [];
@@ -182,12 +189,18 @@ const calculateDollars = (): void => {
 
     // Today is ___.
     document.getElementById("today")!.innerHTML = dateFormat(today);
-     
-    // There are ___ days left until the end of school, which is ___.
+    
+    // There are ___ days left until the end of ___, which is ___.
     document.getElementById("school-days-left")!.innerHTML = schoolDaysLeft - excludeDays + " day(s)";
-    document.getElementById("last-day")!.innerHTML = dateFormat(lastDay);
+    rollover ? (
+        document.getElementById("last-day-description-beginning")!.innerHTML = "fall quarter (rollover period)",
+        document.getElementById("last-day-description-end")!.innerHTML = "fall quarter"
+    ) : ( 
+        document.getElementById("last-day-description-beginning")!.innerHTML =  "the end of school",
+        document.getElementById("last-day-description-end")!.innerHTML = "the school year");
+    document.getElementById("last-day").innerHTML = dateFormat(lastDay);
 
-    // If you have ___ left, you can spend ___ each day to have enough for the rest of the school year.
+    // If you have ___ left, you can spend ___ each day to have enough for the rest of _(line 196)_.
     document.getElementById("og-dollars")!.innerHTML = "$" + dollarsElement + " left";
     document.getElementById("result-dollars")!.innerHTML = result + " each day";
 }
