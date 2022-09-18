@@ -5,8 +5,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "dev": "webpack serve --mode development"
+    "dev": "webpack serve --mode development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
+  "repository": {
+    "url": "git+http://jenetic.github.io/daily-dollars"
+  },
+  "homepage": "http://jenetic.github.io/daily-dollars",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -15,6 +21,7 @@
     "@babel/preset-env": "^7.18.9",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
+    "gh-pages": "^4.0.0",
     "html-loader": "^4.1.0",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",

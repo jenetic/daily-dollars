@@ -8,9 +8,6 @@ Try it out [here](https://jenetic.github.io/daily-dollars/)!
 ## Built With
 This was built with TypeScript, HTML, and CSS.
 
-## To Add
-- [ ] Calculate using rollover dining dollars
-
 ## Development
 
 ```shell
@@ -22,5 +19,8 @@ $ npm run dev
 
 # Bundle files for production
 $ npm run build
+
+# Deploy to Github Pages
+$ npm run deploy
 ```
 
